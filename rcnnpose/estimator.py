@@ -62,3 +62,13 @@ class BodyPoseEstimator(object):
                     keypoint = dictionary['keypoints'][i].detach().cpu().squeeze().numpy()
                     keypoints.append(keypoint)
         return np.asarray(keypoints, dtype=np.int32)
+    
+    @staticmethod
+    def get_boxes(dictionary, label=1, score_threshold=0.5):
+        boxes = []
+        if dictionary:
+            for i in (dictionary['labels'] == label).nonzero().view(-1):
+                if dictionary['scores'][i] > score_threshold:
+                    box = dictionary['boxes'][i].detach().cpu().squeeze().numpy()
+                    boxes.append(box)
+        return np.asarray(boxes, dtype=np.int32)

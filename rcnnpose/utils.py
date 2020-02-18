@@ -34,6 +34,13 @@ def _draw_connection(image, point1, point2, color, thickness=1):
     return image
 
 
+def _draw_box(image, point1, point2, color, thickness=1):
+    x1, y1 = point1
+    x2, y2 = point2
+    cv2.rectangle(image, (int(x1), int(y1)), (int(x2), int(y2)), color, thickness, cv2.LINE_AA)
+    return image
+
+
 def draw_masks(image, masks, color=None, alpha=0.5):
     overlay = image.copy()
     for mask in masks:
@@ -68,4 +75,11 @@ def draw_body_connections(image, keypoints, thickness=1, alpha=1.0):
             overlay = _draw_connection(overlay, kp[i], kp[j], (255, 255, 0), thickness)
         for i, j in r_conn:
             overlay = _draw_connection(overlay, kp[i], kp[j], (255, 0, 255), thickness)
+    return cv2.addWeighted(overlay, alpha, image, 1.0 - alpha, 0)
+
+
+def draw_boxes(image, boxes, thickness=1, alpha=1.0):
+    overlay = image.copy()
+    for box in boxes:
+        overlay = _draw_box(overlay, box[:2], box[2:], (0, 255, 0), thickness)
     return cv2.addWeighted(overlay, alpha, image, 1.0 - alpha, 0)

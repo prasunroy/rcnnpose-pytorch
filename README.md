@@ -3,7 +3,7 @@
 </p>
 
 # RCNNPose PyTorch
-**Mask R-CNN and Keypoint R-CNN wrapper for pose estimation with PyTorch.**
+**Mask R-CNN and Keypoint R-CNN api wrapper in PyTorch.**
 <img align='right' height='100' src='https://github.com/prasunroy/rcnnpose-pytorch/blob/master/assets/logo.png' />
 
 ![badge](https://github.com/prasunroy/rcnnpose-pytorch/blob/master/assets/badge_1.svg)
@@ -35,5 +35,7 @@ python video_demo.py
 
 <br />
 <br />
+
+
 
 **Made with** :heart: **and** :pizza:
